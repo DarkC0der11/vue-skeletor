@@ -2,8 +2,6 @@ import typescript from 'rollup-plugin-typescript';
 import babel from '@rollup/plugin-babel';
 import scss from 'rollup-plugin-scss'
 
-const isDev = process.env.NODE_ENV === 'development';
-
 const typescriptPlugin = typescript({
   tsconfig: './',
 });
@@ -29,4 +27,13 @@ export default [
     plugins,
     external: ['vue'],
   },
+  {
+    input: 'src/index.ts',
+    output: {
+      format: 'cjs',
+      file: 'dist/vue-skeletor.cjs.js',
+    },
+    plugins,
+    external: ['vue'],
+  }
 ]
