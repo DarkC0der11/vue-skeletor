@@ -7,7 +7,7 @@ export default {
     return (
       <div style="width: 300px; margin: 0 auto;">
         <div style="margin-bottom: 12px;">
-          <Skeletor height={200} width="100%"/>
+          <Skeletor height={200}/>
         </div>
 
         <div class="d-flex align-center" style="margin-bottom: 12px;">
