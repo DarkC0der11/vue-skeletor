@@ -35,7 +35,7 @@ const Skeletor = defineComponent({
 
   setup(props) {
     const skeletorOptions = inject<SkeletorOptions>(skeletorOptionsProvide, { shimmer: true });
-    const isRect = !props.circle && ((props.width && props.height) || props.size);
+    const isRect = !props.circle && (props.size || props.height || (props.width && props.height));
     const isText = !props.circle && !props.size && !props.height;
 
     const classes = {
