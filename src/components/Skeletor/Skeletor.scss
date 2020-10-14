@@ -3,7 +3,7 @@
   overflow: hidden;
   background-color: rgb(238, 238, 238);
   
-  &--shimmer {
+  &:not(&--shimmerless) {
     &:after {
       position: absolute;
       top: 0;
@@ -25,19 +25,23 @@
 
   &--rect {
     display: block;
-    border-radius: 4px;
   }
 
   &--circle {
     border-radius: 50%;
   }
 
+  &--pill, &--text {
+    border-radius: 9999px;
+  }
+
   &--text {
     line-height: 1;
     display: inline-block;
     width: 100%;
-    border-radius: 9999px;
     height: inherit;
+    vertical-align: middle;
+    top: -1px;
   }
 }
 

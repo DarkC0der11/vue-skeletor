@@ -1,16 +1,26 @@
 import './Skeletor.scss';
-import { defineComponent, CSSProperties, inject } from 'vue';
+import { defineComponent, CSSProperties, computed, h } from 'vue';
 import { convertToUnit } from '../../helpers';
-import { skeletorOptionsProvide, SkeletorOptions } from '../../install';
+import useSkeletor from '../../composables/use-skeletor';
 
 const Skeletor = defineComponent({
   name: 'Skeletor',
 
   props: {
+    as: {
+      type: String,
+      default: 'span'
+    },
+
     circle: {
       type: Boolean,
       default: false,
     },
+
+    pill: {
+      type: Boolean,
+      default: false
+    },  
 
     size: {
       type: [String, Number],
@@ -34,38 +44,52 @@ const Skeletor = defineComponent({
   },
 
   setup(props) {
-    const skeletorOptions = inject<SkeletorOptions>(skeletorOptionsProvide, { shimmer: true });
-    const isRect = !props.circle && (props.size || props.height || (props.width && props.height));
-    const isText = !props.circle && !props.size && !props.height;
+    const skeletor = useSkeletor()!;
+    const isRect = computed(() => (
+      !props.circle && (props.size || props.height)
+    ));
+    const isText = computed(() => (
+      !props.circle && !props.size && !props.height
+    ));
+    const isShimmerless = computed(() => (
+      props.shimmer !== undefined ? !props.shimmer : !skeletor.shimmer
+    ));
 
-    const classes = {
+    const classes = computed(() => ({
       'vue-skeletor': true,
-      'vue-skeletor--rect': isRect,
-      'vue-skeletor--text': isText,
+      'vue-skeletor--rect': isRect.value,
+      'vue-skeletor--text': isText.value,
+      'vue-skeletor--shimmerless': isShimmerless.value,
       'vue-skeletor--circle': props.circle,
-      'vue-skeletor--shimmer': props.shimmer !== undefined ? props.shimmer : skeletorOptions.shimmer,
-    };
+      'vue-skeletor--pill': props.pill,
+    }));
 
-    const style: CSSProperties = {};
+    const style = computed(() => {
+      const _style: CSSProperties = {};
 
-    if(props.size) {
-      style.width = convertToUnit(props.size);
-      style.height = convertToUnit(props.size);
-    } 
+      if(props.size) {
+        const size = convertToUnit(props.size);
+        _style.width = size;
+        _style.height = size;
+      } 
+  
+      if(!props.size && props.width) {
+        _style.width = convertToUnit(props.width);
+      }
+  
+      if(!props.size && props.height) {
+        _style.height = convertToUnit(props.height);
+      }
 
-    if(!props.size && props.width) {
-      style.width = convertToUnit(props.width);
-    }
+      return _style;
+    });
 
-    if(!props.size && props.height) {
-      style.height = convertToUnit(props.height);
-    }
+    const children = isText ? '\u200C' : null;
 
-    return () => (
-      <span class={classes} style={style}>
-        {isText ? '\u200C' : null}
-      </span>
-    )
+    return () => h(props.as, {
+      class: classes.value,
+      style: style.value,
+    }, [children]);
   },
 });
 

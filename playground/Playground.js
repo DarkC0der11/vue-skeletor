@@ -1,13 +1,30 @@
-import { Skeletor } from '../src';
+import { Skeletor } from 'vue-skeletor';
 
 export default {
   name: 'Playground',
 
+  data: () => ({
+    shimmer: true,
+    imgHeight: 200,
+  }),
+
   render() {
-    return (
+    return [
+      <button onClick={() => {
+        this.shimmer = !this.shimmer;
+      }}>
+        Toggle shimmer
+      </button>,
+
+      <button onClick={() => {
+        this.imgHeight = 400;
+      }}>
+        Change height
+      </button>,
+
       <div style="width: 300px; margin: 0 auto;">
         <div style="margin-bottom: 12px;">
-          <Skeletor height={200}/>
+          <Skeletor height={this.imgHeight} shimmer={this.shimmer}/>
         </div>
 
         <div class="d-flex align-center" style="margin-bottom: 12px;">
@@ -30,10 +47,10 @@ export default {
         </p>
 
         <div class="d-flex justify-end">
-          <Skeletor width={96} height={36} style="margin-right: 4px;"/>
-          <Skeletor width={96} height={36}/>
+          <Skeletor width={96} height={36} pill style="margin-right: 4px;"/>
+          <Skeletor width={96} height={36} pill/>
         </div>
       </div>
-    );
+    ];
   }
 }

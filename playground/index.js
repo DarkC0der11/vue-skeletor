@@ -1,10 +1,10 @@
 import './index.scss';
 import { createApp } from 'vue';
 import Playground from './Playground';
-import VueSkeletor from '../src';
+import VueSkeletor from 'vue-skeletor';
 
 const app = createApp(Playground);
 
-app.use(VueSkeletor, { shimmer: false });
+app.use(VueSkeletor);
 
 app.mount(document.querySelector('#app'));

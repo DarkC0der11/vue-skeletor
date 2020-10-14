@@ -1,14 +1,15 @@
-import { Plugin } from 'vue';
-
-export const skeletorOptionsProvide = Symbol('SkeletorOptionsProvide');
-
-export interface SkeletorOptions {
-  shimmer?: boolean
-}
+import { Plugin, reactive } from 'vue';
+import { SkeletorSymbol } from './constants';
+import { Skeletor } from './types';
 
 const SkeletorPlugin: Plugin = {
-  install(app, options: SkeletorOptions = { shimmer: true }) {
-    app.provide(skeletorOptionsProvide, options);
+  install(app, options: Skeletor = {}) {
+    app.provide(SkeletorSymbol, reactive<Skeletor>({
+      shimmer: true,
+      color: 'rgb(238, 238, 238)',
+      shimmerColor: 'rgb(255, 255, 255)',
+      ...options,
+    }));
   }
 }
 
