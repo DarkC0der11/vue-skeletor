@@ -1,7 +1,10 @@
 {
+  "include": [
+    "src"
+  ],
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
+    "target": "ESNext",
+    "module": "ESNext",
     "strict": true,
     "jsx": "preserve",
     "importHelpers": true,
@@ -12,5 +15,8 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
 }

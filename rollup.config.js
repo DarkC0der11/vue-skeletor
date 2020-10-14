@@ -1,6 +1,8 @@
+import path from 'path';
 import typescript from 'rollup-plugin-typescript';
 import babel from '@rollup/plugin-babel';
 import scss from 'rollup-plugin-scss'
+import alias from '@rollup/plugin-alias';
 
 const typescriptPlugin = typescript({
   tsconfig: './',
@@ -11,10 +13,19 @@ const babelPlugin = babel({
   extensions: ['.jsx', '.tsx', '.ts', '.js']
 });
 
+const aliasPlugin = alias({
+  entries: [
+    { find: '@', replacement: path.resolve(__dirname, 'src') },
+  ]
+});
+
 const plugins = [
   typescriptPlugin,
   babelPlugin,
-  scss(),
+  aliasPlugin,
+  scss({
+    output: 'dist/vue-skeletor.css',
+  }),
 ];
 
 export default [
