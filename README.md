@@ -59,6 +59,11 @@ And that's it, the text skeletons will automatically catch up with the styles yo
 Import the component locally or register it globally if you like.
 
 ```js
+  // Import the styles in your main entry file 
+  import 'vue-skeletor/dist/vue-skeletor.css';
+```
+
+```js
   // Import the component
   import { Skeletor } from 'vue-skeletor';
 
