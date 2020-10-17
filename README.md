@@ -2,6 +2,8 @@
 
 Vue 3 adaptive skeleton loading component that will match your typography. 
 
+[Codesandbox Card Example](https://codesandbox.io/s/epic-ishizaka-nl9z3?file=/src/App.vue) 
+
 ## Installation
 `npm install vue-skeletor -S`
 
