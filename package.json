@@ -1,6 +1,6 @@
 {
   "name": "vue-skeletor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vue 3 Skeleton Loading component.",
   "main": "dist/vue-skeletor.cjs.js",
   "module": "dist/vue-skeletor.esm.js",
