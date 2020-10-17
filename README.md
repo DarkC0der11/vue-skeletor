@@ -5,6 +5,55 @@ Vue 3 adaptive skeleton loading component that will match your typography.
 ## Installation
 `npm install vue-skeletor -S`
 
+## Why adaptive skeletons?
+Skeletons are used to mimic how the real content would look, so in order to create nice skeleton you would have to manually create squares, circles and position/size them to match your real component and keep it updated whenever you change it. 
+
+Aww sounds awful isn't it? 
+
+Wouldn't be nice if you had a skeleton that automatically adjusts to your existing components layout? I think it would =) so the Vue Skeletor comes to rescue. 
+
+Instead of creating separate skeleton components you can inject skeletons directly into your existing components.
+
+Example: 
+
+```html
+  <template>
+    <div class="post">
+      <div class="post__image">
+        <img 
+          v-if="post" 
+          :src="post.img"
+          height="200"
+        />
+
+        <!-- A simple 200px height rect which mimics the post image  -->
+        <Skeletor v-else-if="isPostLoading" height="200"/>
+      </div>
+        
+      <div class="post__title">
+        <template v-if="post">
+          {{ post.title }}
+        </template>
+
+        <Skeletor v-else-if="isPostLoading">
+      </div>
+
+      <div class="post__text">
+        <template v-if="post">
+          {{ post.text }}
+        </template>
+
+        <template v-else-if="isPostLoading">
+          <!-- Creating 5 skeletons that mimics the text -->
+          <Skeletor v-for="i in 5">
+        </template>
+      </div>
+    </div>
+  </template>
+```
+
+And that's it, the text skeletons will automatically catch up with the styles you defined for the title and text elements.
+
 ## Basic Usage
 
 Import the component locally or register it globally if you like.
