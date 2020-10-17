@@ -5,7 +5,7 @@ import scss from 'rollup-plugin-scss'
 import alias from '@rollup/plugin-alias';
 
 const typescriptPlugin = typescript({
-  tsconfig: './',
+  tsconfig: './tsconfig.json',
 });
 
 const babelPlugin = babel({

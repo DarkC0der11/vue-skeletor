@@ -25,3 +25,21 @@ body {
 .flex-grow-1 {
   flex-grow: 1;
 }
+
+.vue-skeletor {
+  background-color: black;
+
+  &:not(&--shimmerless) {
+    animation: shimmer 1s infinite alternate;
+
+    &:after {
+      display: none;
+    }
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    background-color: #ccc;
+  }
+}

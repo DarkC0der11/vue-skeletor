@@ -45,12 +45,15 @@ const Skeletor = defineComponent({
 
   setup(props) {
     const skeletor = useSkeletor()!;
+
     const isRect = computed(() => (
       !props.circle && (props.size || props.height)
     ));
+
     const isText = computed(() => (
       !props.circle && !props.size && !props.height
     ));
+    
     const isShimmerless = computed(() => (
       props.shimmer !== undefined ? !props.shimmer : !skeletor.shimmer
     ));
@@ -84,7 +87,7 @@ const Skeletor = defineComponent({
       return _style;
     });
 
-    const children = isText ? '\u200C' : null;
+    const children = isText.value ? '\u200C' : null;
 
     return () => h(props.as, {
       class: classes.value,
