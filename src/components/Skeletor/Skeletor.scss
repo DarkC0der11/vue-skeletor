@@ -1,7 +1,7 @@
 .vue-skeletor {
   position: relative;
   overflow: hidden;
-  background-color: #ccc;
+  background-color: rgba(#000, 0.12);
   
   &:not(&--shimmerless) {
     &:after {
@@ -12,14 +12,12 @@
       height: 100%;
       transform: translateX(-100%);
       background-image: linear-gradient(
-        90deg,
-        rgba(#fff, 0),
-        rgba(#fff, 0.25),
-        rgba(#fff, 0.5),
-        rgba(#fff, 0.25),
-        rgba(#fff, 0)
+        90deg, 
+        rgba(255, 255, 255, 0), 
+        rgba(255, 255, 255, .3), 
+        rgba(37, 22, 22, 0)
       );
-      animation: shimmer 1.2s infinite;
+      animation: shimmer 1.5s infinite;
       content: '';
     }
   }
