@@ -9,7 +9,7 @@ Vue 3 adaptive skeleton loading component that will match your typography.
 
 Import the component locally or register it globally if you like.
 
-```jsx
+```js
   // Import the component
   import { Skeletor } from 'vue-skeletor';
 
@@ -58,16 +58,17 @@ block` meaning it will no longer adapt to your typography, which is useful for
 creating non text block level skeletons like image placeholders, buttons, and e.t.c.
 
 ## Size
-`size`: number | string 
+`size`: number | string
 
 ```html
+  <!-- Creates a 100x100 square -->
   <Skeletor size="100"/>
 ```
 
 Size sets both `width` & `height` to simplify creating square/circle shapes
 
 ## Circle
-`circle`: boolean 
+`circle`: boolean (default: false)
 
 ```html
   <!-- Creates a 50x50 circle -->
@@ -75,3 +76,34 @@ Size sets both `width` & `height` to simplify creating square/circle shapes
 ```
 
 As the name suggest it just turns the element into a circle, use only when `width` & `height` or size is set.
+
+## Pill
+`pill`: boolean (default: false)
+
+```html
+  <Skeletor width="200" height="50" pill/>
+```
+
+Makes rectangular skeletons fully rounded, useful when creating rounded button or chip 
+and e.t.c shapes.
+
+## Shimmer
+`shimmer`: boolean 
+
+```html
+  <Skeletor :shimmer="false"/>
+```
+
+Optionally you can turn off/on specific skeleton's shimmer animation, it is based of 
+your global config, if you disable shimmer globally, then this prop should be set 
+accordingly.
+
+## As
+`as`: string (default: 'span')
+
+```html
+  <Skeletor :size="100" as="div"/>
+```
+
+By default skeletons are rendered as `span` tags, but you can change it
+using this prop.
