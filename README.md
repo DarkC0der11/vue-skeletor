@@ -23,6 +23,37 @@ Import the component locally or register it globally if you like.
   <!-- And use in your <template> or JSX -->
   <Skeletor /> 
 ```
+## Global Configuration
+If you want you can globally turn off the shimmer animation using the Skeletor Plugin
+usage. 
+
+```js
+  // Import the plugin
+  import VueSkeletor from 'vue-skeletor';
+
+  // Register plugin in your vue app
+  app.use(VueSkeletor, {
+    shimmer: false,
+  })
+```
+
+## useSkeletor
+When you install skeletor as Plugin it `provides` global config to your app and you get access to 'useSkeletor' composable which will inject the `skeletor` config object through which you can set any global config at runtime.
+
+```js
+  // Import the composable
+  import { useSkeletor } from 'vue-skeletor';
+
+  export default defineComponent({
+    setup() {
+      // In your setup function use the composable
+      const skeletor = useSkeletor();
+
+      // Set the shimmer config
+      skeletor.shimmer = false;
+    }
+  })
+```
 
 ## Width
 `width`: number | string 
@@ -107,3 +138,64 @@ accordingly.
 
 By default skeletons are rendered as `span` tags, but you can change it
 using this prop.
+
+## Customizing the style and animation
+Skeletor uses bem classes, that you can use to override your skeletons color and shimmer animation and you have the full control over how your skeletons look, there is no need for any javascript api for this in my opinion.
+
+```css
+  /* Static background */
+  .vue-skeletor {
+    background-color: #ccc;
+  }
+
+  /* 
+    If you have theme switching in your app for example
+    from light to dark, you can target skeletons under 
+    some global theme class or attribute e.g. 
+  */
+  [data-theme="dark"] .vue-skeletor {
+    background: #363636;
+  }
+
+  /* 
+    Text skeleton
+    By default skeletor uses fully rounded style for text
+    type skeletons, you can change that as you like
+  */
+  .vue-skeletor--text {
+    /* Completely square style skeletons */
+    border-radius: 0;
+  }
+
+  /* Shimmer */
+  .vue-skeletor:not(.vue-skeletor--shimmerless):after {
+    /* 
+      Change the shimmer color, its a simple 90 deg 
+      linear horizontal gradient, adjust it however
+      you like.
+    */
+    background: linear-gradient(
+      90deg, 
+      rgba(255,255,255,0) 0%, 
+      rgba(255,255,255,1) 50%, 
+      rgba(255,255,255,0) 100%
+    );
+
+    /* Change any css keyframes animation property */
+    animation-duration: 2s; 
+    animation-timing-function: ease-in-out;
+    /* ... */
+
+    /* 
+      Or implement your custom shimmer css animation 
+      if you want it's pure css no magic happening =)
+    */
+  }
+
+  /* Default keyframes used in skeletor */
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+```
