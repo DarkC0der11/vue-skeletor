@@ -22,6 +22,10 @@
     "vue skeleton loader"
   ],
   "author": "DarkC0der",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DarkC0der11/vue-skeletor"
+  },
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.11.6",
