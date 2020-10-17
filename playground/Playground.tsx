@@ -5,13 +5,11 @@ import './index.scss';
 export default defineComponent({
   name: 'Playground',
 
-  data: () => ({}),
-
   setup() {
     const skeletor = useSkeletor();
   },
 
-  render() {
+  render() {  
     return [
       <div style="width: 300px; margin: 0 auto;">
         <div style="margin-bottom: 12px;">
