@@ -2,7 +2,12 @@
   position: relative;
   overflow: hidden;
   background-color: rgba(#000, 0.12);
-  
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0)
+
   &:not(&--shimmerless) {
     &:after {
       position: absolute;
@@ -12,9 +17,9 @@
       height: 100%;
       transform: translateX(-100%);
       background-image: linear-gradient(
-        90deg, 
-        rgba(255, 255, 255, 0), 
-        rgba(255, 255, 255, .3), 
+        90deg,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, .3),
         rgba(37, 22, 22, 0)
       );
       animation: shimmer 1.5s infinite;
